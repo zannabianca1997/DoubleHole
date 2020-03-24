@@ -96,9 +96,15 @@ void metropolis(const MetroPath state, const SimSetup setup, SimValues& values, 
 	auto start = std::chrono::high_resolution_clock::now(); // taking the start time
 	unsigned int rowdim = setup.N * sizeof(CELL_T); // dimension of a row
 	Cell end = state + setup.N * (setup.samples - 1); // calculating the array end
+#ifdef VERBOSE
+	unsigned int i = 0;
+	unsigned int print_spacing = (setup.samples > 100) ? setup.samples / 100 : 1;  // calculating how much states are 1%
+#endif	
 	for(Path stat = state; stat < end; stat += setup.N){ // on every row of the array
 #ifdef VERBOSE
-		std::cout << "State n." << (stat-state)/setup.N << std::endl;
+		if((i % print_spacing) == 0)
+			std::cout << "Progress " << 100 * float(stat - state) / float(end - state) << "%" << std::endl; // keeping progress status
+		i++;
 #endif
 		for(int i=0; i<setup.samples_spacing;i++) // repeat spacing time a full pass
 			accepted += step(stat, setup, precalculated); //

@@ -6,4 +6,4 @@
 
 #define TIMING_UNITS milliseconds
 
-//#define VERBOSE
+#define VERBOSE
