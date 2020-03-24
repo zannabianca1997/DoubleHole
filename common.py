@@ -7,6 +7,18 @@ EXE_NAME = 'DoubleHole.exe'
 SETUP_EXT = ".ini"
 DATA_EXT = ".npy"
 
+BASE_SETUP = """[Physical]
+T_bar = {T_bar}
+lambda = {lambda_}
+start_path = {start_path}
+[Simulation]
+SEED = {SEED}
+N = {N}
+repeats = {repeats}
+delta = {delta}
+samples = {samples}
+samples_spacing = {samples_spacing}"""
+
 def load(setup_path, values_path):
     # reading setup values
     setup=cgp.ConfigParser()
