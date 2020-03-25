@@ -7,3 +7,4 @@
 #define TIMING_UNITS milliseconds
 
 #define VERBOSE
+//#define PROGRESS

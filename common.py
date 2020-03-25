@@ -1,6 +1,7 @@
 import numpy as np
 import configparser as cgp
 from io import StringIO
+import subprocess
 import os
 
 EXE_NAME = 'DoubleHole.exe'
@@ -35,8 +36,8 @@ def to_string(setup):
     string_file.close()
     return res;
 
-def do_simulation(in_file, out_file):
-    os.system(f'{EXE_NAME} "{in_file}" "{out_file}"')
+def do_simulation(in_file, out_file, stdin=None, stdout=None, stderr=None):
+    subprocess.call(f'{EXE_NAME} "{in_file}" "{out_file}"', stdin=stdin, stderr=stderr, stdout=stdout)
 
 def is_modified(in_file, out_file):
     return os.stat(in_file).st_mtime > os.stat(out_file).st_mtime

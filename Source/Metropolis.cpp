@@ -2,7 +2,7 @@
 
 
 #include <math.h>
-#ifdef VERBOSE
+#ifdef PROGRESS
 #include <iostream>
 #endif
 #include <chrono>
@@ -96,12 +96,12 @@ void metropolis(const MetroPath state, const SimSetup setup, SimValues& values, 
 	auto start = std::chrono::high_resolution_clock::now(); // taking the start time
 	unsigned int rowdim = setup.N * sizeof(CELL_T); // dimension of a row
 	Cell end = state + setup.N * (setup.samples - 1); // calculating the array end
-#ifdef VERBOSE
+#ifdef PROGRESS
 	unsigned int i = 0;
 	unsigned int print_spacing = (setup.samples > 100) ? setup.samples / 100 : 1;  // calculating how much states are 1%
 #endif	
 	for(Path stat = state; stat < end; stat += setup.N){ // on every row of the array
-#ifdef VERBOSE
+#ifdef PROGRESS
 		if((i % print_spacing) == 0)
 			std::cout << "Progress " << 100 * float(stat - state) / float(end - state) << "%" << std::endl; // keeping progress status
 		i++;
