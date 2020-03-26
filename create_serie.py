@@ -19,6 +19,7 @@ for i,lambda_ in enumerate(np.logspace(-1,1,DIMS[0])):
                 common.BASE_SETUP.format(
                     T_bar=T_bar,
                     lambda_=lambda_,
+
                     start_path="RIGTH",  # is simmetrized later
                     SEED=seeds[i, j],
                     N=max(2,N_min),  # the algorithm work only for N > 2

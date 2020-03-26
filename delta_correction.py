@@ -1,5 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import common
 
 ACC_RANGE = (0.20, 0.40)
