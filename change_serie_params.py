@@ -1,8 +1,11 @@
 import common
 
-DRY_RUN = False  # if this script will actually change anything
+DRY_RUN = True  # if this script will actually change anything
 
-new_repeats = 10
+new_values = {
+    ("Simulation", "samples"): 1000,
+    ("Simulation", "samples_spacing"): 1000,
+}
 
 if __name__ == "__main__":
 
@@ -10,9 +13,12 @@ if __name__ == "__main__":
         assert data is not None
         setup, _ = common.load(file, data)
         print(f"Simulation {file}")
-        repeats = setup.getint("Simulation", "repeats")
-        print(f"Correcting old N {repeats} with new {new_repeats}")
+        for section, name in new_values.keys():
+            old_val = setup.getint(section, name)
+            if old_val != new_values[(section, name)]:
+                print(f"Correcting old {name} {old_val} with new {new_values[(section, name)]}")
+                setup.set(section, name, str(new_values[(section, name)]))  # changing data in memory...
+
         if not DRY_RUN:
-            setup.set("Simulation", "repeats", str(new_repeats))  # changing data in memory...
             with open(file, "w") as out:
                 setup.write(out)

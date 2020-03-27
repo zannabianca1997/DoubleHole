@@ -17,7 +17,7 @@ if __name__=="__main__":
             print("No data file found")
             data = os.path.splitext(file)[0] + common.DATA_EXT
         print(f"Adding {file} to the pool...")
-        pool.apply_async(common.do_simulation, (file, data))  # add the task to the pool, setting the standardoutput to 0
+        pool.apply_async(common.do_simulation, (file, data))  # add the task to the pool
 
     pool.close()  # no more work
     print("Waiting for completion...")
