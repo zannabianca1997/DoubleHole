@@ -4,8 +4,14 @@
 # compiled
 *.[oa]
 *.exe
+__pycache__
 
 # experimental results
 *.npy
 *.png
 *.zip
+
+# latex files
+*.aux
+*.log
+*.synctex.gz
