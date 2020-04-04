@@ -159,6 +159,12 @@
 	\end{equation*}
 	Possiamo esprimere la probabilità di fallimento come una somma cumulativa su tutti gli $m$ minori del limite:
 	\begin{equation}
-		P_s =  \sum_{m=0}^{m_{max}} P(m) = \frac{1}{2^M} \sum_{m=0}^{m_{max}} {M\choose m}(1-P)^{M-m}P^m
+		P_s =  \sum_{m=0}^{m_{max}} P(m) =  \sum_{m=0}^{m_{max}} {M\choose m}(1-P)^{M-m}P^m
+	\end{equation}
+	Per stimarlo passiamo nel limite di $P$ molto piccolo: $M \gg m$.
+	Sostituiamo ${M\choose m} \approx \frac{\left(eP\left(\frac{M}{m}+\frac{1}{2}\right)\right)^{m}}{\sqrt{2\pi m}}$ e arriviamo a:
+	\begin{equation}
+	P_s = \left({1-P} \right)^M \sum_{m=0}^{m_{max}}
+	 \frac{\left(eP\left(\frac{M}{m}+\frac{1}{2}\right)\right)^{m}}{\sqrt{2\pi m}}
 	\end{equation}
 \end{document}
